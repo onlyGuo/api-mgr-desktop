@@ -228,6 +228,7 @@ export default {
             }else{
                 // 请求体
                 data = JSON.parse(this.requestBody)
+                xhr.setRequestHeader('content-type', 'application/json');
                 xhr.send(data)
             }
         }
