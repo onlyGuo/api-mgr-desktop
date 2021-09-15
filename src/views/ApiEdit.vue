@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
         <h3 v-text="name"></h3>
-        <v-btn elevation="2" small color="primary" style="margin-left: 10px; float: right; margin-top: -30px" @click="doRequest">Save</v-btn>
+        <v-btn elevation="2" small color="primary" style="margin-left: 10px; float: right; margin-top: -30px" @click="save">Save</v-btn>
         <v-row align="center">
             <v-col
                 class="d-flex"
