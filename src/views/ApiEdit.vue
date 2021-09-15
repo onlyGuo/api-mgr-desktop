@@ -81,7 +81,7 @@
         <v-row>
             <div class="response">
                 <h3>Response</h3>
-                <codemirror v-model="responseBody" :options="cmOptions"></codemirror>
+                <codemirror v-model="responseBody" :options="requestOptions"></codemirror>
             </div>
         </v-row>
     </v-container>
@@ -229,7 +229,7 @@ export default {
                 // 请求体
                 data = JSON.parse(this.requestBody)
                 xhr.setRequestHeader('content-type', 'application/json');
-                xhr.send(data)
+                xhr.send(JSON.stringify(data))
             }
         }
     },
