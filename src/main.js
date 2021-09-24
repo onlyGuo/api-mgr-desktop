@@ -6,11 +6,18 @@ import VueElectron from 'vue-electron'
 import Axios from 'axios';
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
+// import VuetifyMessage from 'vuetify-message';
 
 Vue.config.productionTip = false
 
 Vue.use(VueElectron)
 Vue.use(VueCodemirror);
+// Vue.prototype.$message = VuetifyMessage
+// Vue.use(VuetifyMessage, {
+//     timeout: 1000,
+//     property: '$message',
+// });
+
 
 
 Axios.defaults.baseURL = ''

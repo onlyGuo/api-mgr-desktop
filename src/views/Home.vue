@@ -2,8 +2,12 @@
     <div class="box" ref="box">
         <div class="left" :elevation="2" :style="`width: ` + leftWhite + `px`">
             <div style="height: 40px">
-                <v-btn depressed style="width: 50px; vertical-align: top"
+                <v-btn depressed style="width: 25px; vertical-align: top;
+                         min-width: 25px"
                        @click="showNewProject = true"> + </v-btn>
+              <v-btn depressed style="width: 25px; vertical-align: top;
+                        min-width: 25px"
+                     @click="reloadApi"> <v-icon>mdi-cached</v-icon> </v-btn>
                 <v-text-field label="Search"
                               style="width: calc(100% - 70px);
                               vertical-align: top;
@@ -161,6 +165,13 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <v-alert
+            border="left"
+            elevation="4"
+            type="success"
+            style="width: 200px; position:fixed; margin-top: 10px;"
+            :style="'right: ' + loadedMessagePostion + 'px'"
+        >Reloaded !</v-alert>
     </div>
 </template>
 
@@ -218,6 +229,7 @@
             items: [
 
             ],
+            loadedMessagePostion: -200
         }
       },
       methods: {
@@ -328,19 +340,25 @@
                   apiKey: "list",
                   content: this.items
               })
+          },
+          reloadApi(){
+            this.ser.get("api?key=" + "list").then(res => {
+              if (!res || !res.length){
+                this.items = []
+              }else{
+                this.items = res;
+              }
+              this.loadedMessagePostion += 210
+              setTimeout(() => {
+                this.loadedMessagePostion -= 210
+              }, 2000)
+            })
           }
       },
       watch: {
       },
       created() {
-        this.ser.get("api?key=" + "list").then(res => {
-            if (!res || !res.length){
-                this.items = []
-            }else{
-                this.items = res;
-            }
-        })
-
+        this.reloadApi()
       }
   }
 </script>
