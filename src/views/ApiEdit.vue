@@ -72,14 +72,14 @@
                     </div>
                 </v-tab-item>
 
-                <v-tab-item key="Body">
+                <v-tab-item key="Body" :key="$route.query.id + '_req'">
                     <h3>Request</h3>
                     <codemirror v-model="requestBody" :options="cmOptions"></codemirror>
                 </v-tab-item>
             </v-tabs-items>
         </v-row>
         <v-row>
-            <div class="response">
+            <div class="response" :key="$route.query.id + '_res'">
                 <h3>Response</h3>
                 <codemirror v-model="responseBody" :options="requestOptions"></codemirror>
             </div>
@@ -240,7 +240,7 @@ export default {
             handler(to, form){
                 this.load()
             }
-        }
+        },
     }
 }
 </script>
